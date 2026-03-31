@@ -1,1 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LO's Arcade</title>
+    <style>
+        body {
+            background-color: #1a1a1a; /* Dark background so it feels like a theater */
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white;
+            font-family: sans-serif;
+        }
+        #ruffle-container {
+            width: 800px; /* Adjust this to match your game's native resolution */
+            height: 600px; 
+            box-shadow: 0px 0px 20px rgba(0,0,0,0.8);
+        }
+    </style>
+</head>
+<body>
 
+    <div id="ruffle-container"></div>
+
+    <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+    <script>
+        window.RufflePlayer = window.RufflePlayer || {};
+        window.addEventListener("load", (event) => {
+            const ruffle = window.RufflePlayer.newest();
+            const player = ruffle.createPlayer();
+            const container = document.getElementById("ruffle-container");
+            container.appendChild(player);
+            
+            // Loads your hacked SWF
+            player.load("game.swf"); 
+            
+            // This forces Ruffle to fill the container perfectly
+            player.style.width = "100%";
+            player.style.height = "100%";
+        });
+    </script>
+</body>
+</html>
